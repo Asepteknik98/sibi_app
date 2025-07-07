@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Teman SIBI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #fff; }
+        .login-container {
+            max-width: 370px;
+            margin: 40px auto;
+            box-shadow: 0 2px 16px #e0e7ff;
+            border-radius: 18px;
+            padding: 32px 24px 24px 24px;
+        }
+        .logo-box {
+            width: 90px; height: 90px;
+            background: #2563eb;
+            border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 18px auto;
+        }
+        .logo-box span { font-size: 48px; color: #fff; }
+        .teman-sibi { color: #2563eb; font-weight: bold; font-size: 1.7rem; text-align: center; margin-bottom: 24px; }
+        .register-link { color: #2563eb; text-decoration: underline; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-box"><span>&#128588;</span></div>
+        <div class="teman-sibi">Teman SIBI</div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} py-2">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <form method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mb-2">Login</button>
+        </form>
+        <div class="text-center mt-2">
+            Belum punya akun? <a href="{{ url_for('register') }}" class="register-link">Daftar</a>
+        </div>
+    </div>
+</body>
+</html> 
